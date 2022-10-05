@@ -6,9 +6,16 @@
  */
 void _add(stack_t **stack, unsigned int line_number)
 {
-	int a, b;
+	int a, b, len = 0;
+	stack_t *tmp;
 
-	if ((*stack)->next == NULL)
+	tmp = *stack;
+	while (tmp != NULL)
+	{
+		tmp = tmp->next;
+		len += 1;
+	}
+	if (len < 2)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		fclose(box.file);
@@ -29,9 +36,16 @@ void _add(stack_t **stack, unsigned int line_number)
  */
 void _sub(stack_t **stack, unsigned int line_number)
 {
-	int a, b;
+	int a, b, len = 0;
+	stack_t *tmp;
 
-	if ((*stack)->next == NULL)
+	tmp = *stack;
+	while (tmp != NULL)
+	{
+		tmp = tmp->next;
+		len += 1;
+	}
+	if (len < 2)
 	{
 		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
 		fclose(box.file);
@@ -52,9 +66,16 @@ void _sub(stack_t **stack, unsigned int line_number)
  */
 void _div(stack_t **stack, unsigned int line_number)
 {
-	int a, b;
+	int a, b, len = 0;
+	stack_t *tmp;
 
-	if ((*stack)->next == NULL)
+	tmp = *stack;
+	while (tmp != NULL)
+	{
+		tmp = tmp->next;
+		len += 1;
+	}
+	if (len < 2)
 	{
 		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
 		fclose(box.file);
@@ -83,9 +104,16 @@ void _div(stack_t **stack, unsigned int line_number)
  */
 void _mul(stack_t **stack, unsigned int line_number)
 {
-	int a, b;
+	int a, b, len = 0;
+	stack_t *tmp;
 
-	if ((*stack)->next == NULL)
+	tmp = *stack;
+	while (tmp != NULL)
+	{
+		tmp = tmp->next;
+		len += 1;
+	}
+	if (len < 2)
 	{
 		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
 		fclose(box.file);
@@ -106,9 +134,16 @@ void _mul(stack_t **stack, unsigned int line_number)
  */
 void _mod(stack_t **stack, unsigned int line_number)
 {
-	int a, b;
+	int a, b, len = 0;
+	stack_t *tmp;
 
-	if ((*stack)->next == NULL)
+	tmp = *stack;
+	while (tmp != NULL)
+	{
+		tmp = tmp->next;
+		len += 1;
+	}
+	if (len < 2)
 	{
 		fprintf(stderr, "L%d: can't mod, stack too short\n", line_number);
 		fclose(box.file);

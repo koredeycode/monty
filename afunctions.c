@@ -6,9 +6,16 @@
  */
 void swap(stack_t **stack, unsigned int line_number)
 {
-	int a, b;
+	int a, b, len = 0;
+	stack_t *tmp;
 
-	if ((*stack)->next == NULL)
+	tmp = *stack;
+	while (tmp != NULL)
+	{
+		tmp = tmp->next;
+		len += 1;
+	}
+	if (len < 2)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		fclose(box.file);
