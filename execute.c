@@ -38,7 +38,7 @@ int exec(char *l_content, stack_t **stack, unsigned int l_number, FILE *stream)
 		fprintf(stderr, "L%d: unknown instruction %s\n", l_number, tok);
 		fclose(stream);
 		free(l_content);
-		free_stack(stack);
+		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
 	return (1);

@@ -21,6 +21,7 @@ int main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 	stream = fopen(av[1], "r");
+	box.file = stream;
 	if (!stream)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
@@ -38,7 +39,7 @@ int main(int ac, char **av)
 		}
 		free(line_content);
 	}
-	free_stack(&stck);
+	free_stack(stck);
 	fclose(stream);
 	return (0);
 }

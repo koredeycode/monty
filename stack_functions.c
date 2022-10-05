@@ -6,26 +6,39 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new = malloc(sizeof(stack_t));
+	int n, j = 0, trap = 0;
 
-	if (!new)
+	if (box.arg)
 	{
-		exit(EXIT_FAILURE);
-	}
-	if ((*stack) == NULL)
-	{
-		new->n = atoi(box.arg)/*line_number*/;
-		new->prev = NULL;
-		new->next = NULL;
-		*stack = new;
+		if (box.arg[0] == '-')
+			j++;
+		for (; box.arg[j] != '\0'; j++)
+		{
+			if (box.arg[j] > 57 || box.arg[j] < 48)
+				trap = 1;
+		}
+		if (trap == 1)
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			fclose(box.file);
+			free(box.content);
+			free_stack(*stack);
+			exit(EXIT_FAILURE);
+		}
 	}
 	else
 	{
-		new->n = atoi(box.arg)/*line_number*/;
-		new->prev = NULL;
-		new->next = *stack;
-		*stack = new;
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		fclose(box.file);
+		free(box.content);
+		free_stack(*stack);
+		exit(EXIT_FAILURE);
 	}
+	n = atoi(box.arg);
+	if (box.flag == 0)
+		add_stack(stack, n);
+/*	else*/
+/*		add_queue(stack, n);*/
 }
 /**
  * pop - remove the top of the stack
@@ -34,15 +47,18 @@ void push(stack_t **stack, unsigned int line_number)
  */
 void pop(stack_t **stack, unsigned int line_number)
 {
-	stack_t *h = *stack;
+	stack_t *h;
 
 	if (*stack == NULL)
 	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		fclose(box.file);
+		free(box.content);
+		free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
 	h = *stack;
 	*stack = (*stack)->next;
-	(*stack)->prev = NULL;
 	free(h);
 }
 /**
@@ -53,8 +69,13 @@ void pop(stack_t **stack, unsigned int line_number)
 void pint(stack_t **stack, unsigned int line_number)
 {
 	if (*stack == NULL)
-		printf("\n");
-	else
+	{
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
+		fclose(box.file);
+		free(box.content);
+		free_stack(*stack);
+		exit(EXIT_FAILURE);
+	}
 		printf("%d\n", (*stack)->n);
 }
 /**
@@ -66,33 +87,29 @@ void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *h;
 
+	line_number = line_number;
 	if ((*stack) == NULL)
-		printf("Stack is Empty\n");
-	else
+		return;
+	h = *stack;
+	while (h != NULL)
 	{
-		h = *stack;
-		while (h != NULL)
-		{
-			printf("%d\n", h->n);
-			h = h->next;
-		}
+		printf("%d\n", h->n);
+		h = h->next;
 	}
 }
 /**
  * free_stack - totally free the stack
  * @stack: pointer to the head pointer
  */
-void free_stack(stack_t **stack)
+void free_stack(stack_t *stack)
 {
 	stack_t *tmp;
 
-	if ((*stack) == NULL)
-		exit(EXIT_SUCCESS);
-	tmp = *stack;
-	while (tmp)
+	tmp = stack;
+	while (stack)
 	{
-		*stack = (*stack)->next;
-		free(tmp);
-		tmp = *stack;
+		tmp = stack->next;
+		free(stack);
+		stack = tmp;
 	}
 }
