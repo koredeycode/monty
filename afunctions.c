@@ -38,3 +38,22 @@ void nop(stack_t **stack, unsigned int line_number)
 	stack = stack;
 	line_number = line_number;
 }
+/**
+ * rotl - rotates the stack to the top
+ * @stack: head pointer of the stack
+ * @line_number: the line number
+ */
+void rotl(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+	int i;
+
+	line_number = line_number;
+	while (tmp && tmp->next)
+	{
+		i = tmp->n;
+		tmp->n = tmp->next->n;
+		tmp->next->n = i;
+		tmp = tmp->next;
+	}
+}

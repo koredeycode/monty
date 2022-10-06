@@ -13,7 +13,7 @@ int exec(char *l_content, stack_t **stack, unsigned int l_number, FILE *stream)
 		{"pop", pop}, {"push", push}, {"pint", pint},
 		{"pall", pall}, {"swap", swap}, {"add", _add},
 		{"sub", _sub}, {"mul", _mul}, {"div", _div}, {"mod", _mod},
-		{"nop", nop}, {"pchar", pchar}, {"pstr", pstr},
+		{"nop", nop}, {"pchar", pchar}, {"pstr", pstr}, {"rotl", rotl},
 		{NULL, NULL},
 	};
 	unsigned int i = 0;
