@@ -14,6 +14,8 @@ void add_stack(stack_t **stack, int n)
 		printf("Error\n");
 		exit(0);
 	}
+	if (*stack)
+		(*stack)->prev = new;
 	new->n = n;
 	new->next = *stack;
 	new->prev = NULL;

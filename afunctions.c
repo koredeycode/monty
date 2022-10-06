@@ -72,12 +72,20 @@ void rotr(stack_t **stack, unsigned int line_number)
 		return;
 	if (tmp->next == NULL)
 		return;
-	while (tmp->next)
+	while (tmp->next != NULL)
 	{
 		tmp = tmp->next;
 	}
-	i = tmp->n;
+	while (tmp->prev)
+	{
+		i = tmp->n;
+		tmp->n = tmp->prev->n;
+		tmp->prev->n = i;
+		tmp = tmp->prev;
+	}
+	/*tmp->next = *stack;
 	tmp->prev->next = NULL;
-	free(tmp);
-	add_stack(stack, i);
+	tmp->prev = NULL;
+	(*stack)->prev = tmp;
+	(*stack) = tmp;*/
 }
