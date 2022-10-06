@@ -20,12 +20,12 @@ void add_stack(stack_t **stack, int n)
 	*stack = new;
 }
 /**
- * stack - change the DS mode to stack
+ * _stack - change the DS mode to stack
  * @stack: stack head
  * @line_number: line_number
  * Return: no return
 */
-void stack(stack_t **stack, unsigned int line_number)
+void _stack(stack_t **stack, unsigned int line_number)
 {
 	stack = stack;
 	line_number = line_number;

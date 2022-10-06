@@ -37,8 +37,8 @@ void push(stack_t **stack, unsigned int line_number)
 	n = atoi(box.arg);
 	if (box.flag == 0)
 		add_stack(stack, n);
-/*	else*/
-/*		add_queue(stack, n);*/
+	else
+		add_queue(stack, n);
 }
 /**
  * pop - remove the top of the stack

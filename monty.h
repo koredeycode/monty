@@ -64,6 +64,7 @@ void nop(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
 int exec(char *l_content, stack_t **stack, unsigned int l_no, FILE *stream);
 void add_stack(stack_t **stack, int n);
+void add_queue(stack_t **stack, int n);
 void _add(stack_t **stack, unsigned int line_number);
 void _sub(stack_t **stack, unsigned int line_number);
 void _mul(stack_t **stack, unsigned int line_number);
@@ -72,5 +73,7 @@ void _mod(stack_t **stack, unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line_number);
 void pstr(stack_t **stack, unsigned int line_number);
 void rotl(stack_t **stack, unsigned int line_number);
-/*void add_queue(stack_t **stack, int n);*/
+void rotr(stack_t **stack, unsigned int line_number);
+void _stack(stack_t **stack, unsigned int line_number);
+void queue(stack_t **stack, unsigned int line_number);
 #endif
