@@ -83,9 +83,4 @@ void rotr(stack_t **stack, unsigned int line_number)
 		tmp->prev->n = i;
 		tmp = tmp->prev;
 	}
-	/*tmp->next = *stack;
-	tmp->prev->next = NULL;
-	tmp->prev = NULL;
-	(*stack)->prev = tmp;
-	(*stack) = tmp;*/
 }
